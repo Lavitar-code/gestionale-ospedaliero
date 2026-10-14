@@ -1,0 +1,56 @@
+package model;
+
+import exceptions.BadArgsException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Reparto {
+    private List<Stanza> stanze;
+    private List<Medico> medici;
+    private String nome;
+    private int id;
+
+
+    public Reparto(int id) {
+        this.id = id;
+        this.stanze = new ArrayList<>();
+        this.medici = new ArrayList<>();
+    }
+
+
+    public Reparto(String nome, int id) throws BadArgsException {
+        if(nome == null) throw new BadArgsException("La classe Reparto ha degli attributi nulli.");
+        if(nome.isEmpty()) throw new BadArgsException("La classe Reparto ha degli attributi vuoti.");
+
+        this.stanze = new ArrayList<>();
+        this.medici = new ArrayList<>();
+
+        this.nome = nome;
+        this.id = id;
+    }
+
+    public void aggiungiStanza(Stanza stanza) {
+        stanze.add(stanza);
+    }
+
+    public void aggiungiMedico(Medico medico) {
+        medici.add(medico);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        if (nome != null && !nome.isEmpty()) {
+            return nome;
+        }
+        return "Reparto ID: " + id;
+    }
+}
